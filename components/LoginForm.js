@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { loginUser } from "../lib/auth";
+import Router from "next/router";
 export class LoginForm extends Component {
   state = {
     email: "Julianne.OConner@kory.org",
@@ -8,7 +9,7 @@ export class LoginForm extends Component {
   handleChange = e => this.setState({ [e.target.name]: e.target.value });
   handleSubmit = e => {
     e.preventDefault();
-    loginUser(this.state);
+    loginUser(this.state).then(() => Router.push("/profile"));
   };
   render() {
     return (

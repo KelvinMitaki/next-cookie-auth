@@ -41,6 +41,25 @@ app.prepare().then(() => {
       res.status(500).send(error);
     }
   });
+
+  server.get("/api/profile", async (req, res) => {
+    try {
+      const { signedCookies = {} } = req;
+      const { token } = signedCookies;
+      if (token && token.email) {
+        const response = await Axios.get(
+          "https://jsonplaceholder.typicode.com/users"
+        );
+        const userProfile = response.data.find(
+          user => user.email === token.email
+        );
+        return res.send(userProfile);
+      }
+      res.status(401).send("No user found");
+    } catch (error) {
+      res.status(500).send(error);
+    }
+  });
   server.get("*", (req, res) => handle(req, res));
   server.listen(PORT, err =>
     err ? console.log({ err }) : console.log(`server started on port ${PORT}`)
