@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import { loginUser } from "../lib/auth";
 export class LoginForm extends Component {
   state = {
     email: "",
@@ -8,7 +8,7 @@ export class LoginForm extends Component {
   handleChange = e => this.setState({ [e.target.name]: e.target.value });
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.state);
+    loginUser(this.state);
   };
   render() {
     return (
