@@ -4,7 +4,7 @@
   "description": "cookie auth with next",
   "main": "server.js",
   "scripts": {
-    "dev": "node server.js"
+    "dev": "nodemon server.js"
   },
   "author": "kevin mitaki",
   "license": "ISC",
