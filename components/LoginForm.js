@@ -4,12 +4,20 @@ import Router from "next/router";
 export class LoginForm extends Component {
   state = {
     email: "Julianne.OConner@kory.org",
-    password: "kale.biz"
+    password: "kale.biz",
+    error: null,
+    loading: false
   };
   handleChange = e => this.setState({ [e.target.name]: e.target.value });
-  handleSubmit = e => {
+  handleSubmit = async e => {
     e.preventDefault();
-    loginUser(this.state).then(() => Router.push("/profile"));
+    this.setState({ error: null, loading: true });
+    const res = await loginUser(this.state);
+    this.setState({ loading: false });
+    if (!res.error) {
+      return Router.push("/profile");
+    }
+    this.setState({ error: res.error.response.data });
   };
   render() {
     return (
@@ -30,7 +38,10 @@ export class LoginForm extends Component {
             value={this.state.password}
           />
         </div>
-        <button type="submit">Submit</button>
+        <button disabled={this.state.loading} type="submit">
+          {this.state.loading ? "Sending..." : "Submit"}
+        </button>
+        {this.state.error && <div>{this.state.error}</div>}
       </form>
     );
   }
