@@ -1,9 +1,17 @@
 import React, { Component } from "react";
+import Router from "next/router";
+import React from "react";
+import Layout from "../components/Layout";
+import Link from "next/link";
 
-export class index extends Component {
-  render() {
-    return <div>hey there</div>;
-  }
-}
+const index = () => {
+  return (
+    <Layout title="Home">
+      <Link href="/profile">
+        <a>Go to profile</a>
+      </Link>
+    </Layout>
+  );
+};
 
 export default index;

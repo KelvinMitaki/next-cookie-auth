@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { getUserProfile } from "../lib/auth";
 import Error from "next/error";
+import Layout from "../components/Layout";
 export class profile extends Component {
   state = {
     user: null,
@@ -21,7 +22,11 @@ export class profile extends Component {
     if (this.state.error) {
       return <Error statusCode={500} />;
     }
-    return <pre>{JSON.stringify(this.state.user, null, 2)}</pre>;
+    return (
+      <Layout title="Profile">
+        <pre>{JSON.stringify(this.state.user, null, 2)}</pre>;
+      </Layout>
+    );
   }
 }
 
