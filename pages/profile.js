@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getUserProfile } from "../lib/auth";
+import { getUserProfile, authInitialProps } from "../lib/auth";
 import Error from "next/error";
 import Layout from "../components/Layout";
 export class profile extends Component {
@@ -23,11 +23,12 @@ export class profile extends Component {
       return <Error statusCode={500} />;
     }
     return (
-      <Layout title="Profile">
+      <Layout title="Profile" {...this.props}>
         <pre>{JSON.stringify(this.state.user, null, 2)}</pre>;
       </Layout>
     );
   }
 }
 
+profile.getInitialProps = authInitialProps();
 export default profile;

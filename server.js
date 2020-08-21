@@ -60,6 +60,10 @@ app.prepare().then(() => {
       res.status(500).send(error);
     }
   });
+  server.post("/api/logout", (req, res) => {
+    res.clearCookie("token");
+    res.sendStatus(204);
+  });
   server.get("*", (req, res) => handle(req, res));
   server.listen(PORT, err =>
     err ? console.log({ err }) : console.log(`server started on port ${PORT}`)
