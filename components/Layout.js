@@ -47,6 +47,13 @@ const Layout = ({ children, title }) => {
           color: rgb(0, 0, 238);
         }
       `}</style>
+      <style global jsx>{`
+        body,
+        html {
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+            Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        }
+      `}</style>
     </div>
   );
 };
