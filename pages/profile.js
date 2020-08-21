@@ -30,5 +30,5 @@ export class profile extends Component {
   }
 }
 
-profile.getInitialProps = authInitialProps();
+profile.getInitialProps = authInitialProps(true);
 export default profile;
