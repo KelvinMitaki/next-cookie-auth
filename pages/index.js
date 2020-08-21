@@ -2,10 +2,11 @@ import Router from "next/router";
 import React from "react";
 import Layout from "../components/Layout";
 import Link from "next/link";
+import { authInitialProps } from "../lib/auth";
 
-const index = () => {
+const Index = props => {
   return (
-    <Layout title="Home">
+    <Layout title="Home" {...props}>
       <Link href="/profile">
         <a>Go to profile</a>
       </Link>
@@ -13,4 +14,5 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;
+Index.getInitialProps = authInitialProps();
